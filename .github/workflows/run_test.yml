@@ -31,11 +31,13 @@ jobs:
           --cov-report=xml:coverage.xml \
           --cov-report=term-missing
       - name: Upload test runs artifact
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: test_runs
           path: report.xml
       - name: Upload coverage artifact
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: coverage
