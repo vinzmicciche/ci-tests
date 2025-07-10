@@ -26,7 +26,7 @@ jobs:
         continue-on-error: true
       - name: Test with pytest
         run: |
-          coverage run -m pytest  -v -s
+          coverage run -m pytest  -v -s --junitxml=report.xml
       - name: Generate Coverage Report
         run: |
           coverage report -m
