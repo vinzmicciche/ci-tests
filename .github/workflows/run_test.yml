@@ -26,7 +26,13 @@ jobs:
         continue-on-error: true
       - name: Test with pytest
         run: |
-          coverage run -m pytest  -v -s --junitxml=report.xml
+          pytest  -v -s --junitxml=report.xml
+      - name: Upload test runs artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: test_runs
+          path: report.xml
+        
         if: always()
       - name: Generate Coverage Report
         run: |
@@ -36,9 +42,4 @@ jobs:
         with:
           name: coverage
           path: coverage.xml
-      - name: Upload test runs artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: test_runs
-          path: report.xml
       
