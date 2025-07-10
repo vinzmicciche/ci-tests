@@ -26,20 +26,17 @@ jobs:
         continue-on-error: true
       - name: Test with pytest
         run: |
-          pytest  -v -s --junitxml=report.xml
+          pytest -v -s --junitxml=report.xml \
+          --cov=src \
+          --cov-report=xml:coverage.xml \
+          --cov-report=term-missing
       - name: Upload test runs artifact
         uses: actions/upload-artifact@v4
         with:
           name: test_runs
           path: report.xml
-        
-        if: always()
-      - name: Generate Coverage Report
-        run: |
-          coverage report -m
       - name: Upload coverage artifact
         uses: actions/upload-artifact@v4
         with:
           name: coverage
           path: coverage.xml
-      
