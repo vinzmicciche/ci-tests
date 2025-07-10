@@ -30,9 +30,14 @@ jobs:
       - name: Generate Coverage Report
         run: |
           coverage report -m
-      - name: Upload artifact
+      - name: Upload coverage artifact
         uses: actions/upload-artifact@v4
         with:
           name: coverage
           path: coverage.xml
+      - name: Upload test runs artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: test_runs
+          path: report.xml
       
